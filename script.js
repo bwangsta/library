@@ -27,15 +27,17 @@ function createBookElement(title, author) {
     bookList.appendChild(newDiv);
 }
 
-document.querySelector(".add-book").addEventListener("click", (e) => {
+const addBookForm = document.querySelector("#add-book-form");
+addBookForm.addEventListener("submit", (e) => {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
-    const read = document.querySelector("#read").value;
+    const read = document.querySelector("#read").checked;   // .checked returns true/false while value returns on/off
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     displayBooks();
-    e.preventDefault();
+    e.preventDefault();     // prevents the site from reloading when submitting the form
+    addBookForm.reset();    // resets form on submit
 });
 
 function displayBooks() {

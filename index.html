@@ -12,20 +12,27 @@
 </head>
 
 <body>
-  <h1>Library</h1>
-  <button type="button"">NEW BOOK</button>
-  <form>
-    <label for=" title">Title</label>
-    <input type="text" id="title" name="title">
-    <label for="author">Author</label>
-    <input type="text" id="author" name="author">
-    <label for="pages">Number of Pages</label>
-    <input type="number" id="pages" name="pages">
-    <input type="checkbox" id="read" name="read">
-    <label for="read">Read</label>
-    <button class="add-book" type="submit">Add</button>
+  <header>
+    <h1>Library</h1>
+    <button type="button"">NEW BOOK</button>
+    <form id="add-book-form">
+      <label for=" title">Title</label>
+      <input type="text" id="title" name="title">
+      <label for="author">Author</label>
+      <input type="text" id="author" name="author">
+      <label for="pages">Number of Pages</label>
+      <input type="number" id="pages" name="pages">
+      <input type="checkbox" id="read" name="read">
+      <label for="read">Read</label>
+      <button type="submit">Add</button>
     </form>
+  </header>
+  <main>
     <div class="book-list"></div>
+  </main>
+  <footer>
+    <p>Created by Brian Wang</p>
+  </footer>
 </body>
 
 </html>
