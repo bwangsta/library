@@ -24,6 +24,7 @@ function render() {
     }
 
     removeBook();
+    checkboxChanged();
 }
 
 function removeBook() {
@@ -35,6 +36,19 @@ function removeBook() {
             myLibrary.splice(id, 1);
             render();
         });
+    });
+}
+
+function checkboxChanged() {
+    const readCheckboxes = document.querySelectorAll(".book input[type='checkbox']");
+    readCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", (event) => {
+            const parentDiv = checkbox.parentNode.parentNode;
+            const id = parentDiv.getAttribute("data-id");
+            myLibrary[id].hasRead = checkbox.checked;
+            console.log(myLibrary);
+            // render(); 
+        }); 
     });
 }
 
@@ -65,8 +79,8 @@ function createBookElement(id, title, author, pages, hasRead) {
     bookList.appendChild(newDiv);
 }
 
-addBookForm.addEventListener("submit", (e) => {
-    e.preventDefault();     // prevents the site from reloading when submitting the form
+addBookForm.addEventListener("submit", (event) => {
+    event.preventDefault();     // prevents the site from reloading when submitting the form
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
