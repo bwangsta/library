@@ -11,15 +11,88 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* justify-content: center;
+  align-items: center; */
+  min-height: 100vh;
+  position: relative;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
 }
 
 main {
   flex: 1;
 }
 
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  /* width: 450px; */
+  min-height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  z-index: 2;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.3rem;
+  padding-top: 0rem;
+}
+
+.modal input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.btn-close {
+  align-self: flex-end;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 10px 10px 0 0;
+}
+
+.hidden {
+  display: none;
+}
+
 .book-list {
   display: flex;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -27,4 +100,6 @@ main {
   height: 15rem;
   width: 10rem;
   background-color: red;
+  border-radius: 15px;
+  padding: 10px;
 }

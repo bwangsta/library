@@ -23,8 +23,8 @@ function render() {
         createBookElement(i, myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].hasRead);
     }
 
-    removeBook();
-    checkboxChanged();
+    removeBook();   // allows books to be removed from the library
+    checkboxChanged();  // allows reading status to be changed
 }
 
 function removeBook() {
@@ -45,7 +45,7 @@ function checkboxChanged() {
         checkbox.addEventListener("change", (event) => {
             const parentDiv = checkbox.parentNode.parentNode;
             const id = parentDiv.getAttribute("data-id");
-            myLibrary[id].hasRead = checkbox.checked;
+            myLibrary[id].hasRead = event.target.checked;
             console.log(myLibrary);
             // render(); 
         }); 
@@ -88,7 +88,26 @@ addBookForm.addEventListener("submit", (event) => {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     addBookForm.reset();    // resets form on submit
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
     render();
+});
+
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const newBookBtn = document.querySelector(".new-book-btn");
+const closeBtn = document.querySelector(".btn-close");
+newBookBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+});
+overlay.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+});
+closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
 });
 
 render();
