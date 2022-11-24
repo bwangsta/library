@@ -20,28 +20,31 @@ function render() {
 
     // rerenders all books on screen
     for (let i=0; i < myLibrary.length; i++) {
-        createBookElement(i, myLibrary[i].title, myLibrary[i].author, myLibrary[i].hasRead);
+        createBookElement(i, myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].hasRead);
     }
 
+    removeBook();
+}
+
+function removeBook() {
     const removeButtons = document.querySelectorAll(".book button");
     removeButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const parentDiv = button.parentNode;
+            const parentDiv = button.parentNode.parentNode;
             const id = parentDiv.getAttribute("data-id");
-
             myLibrary.splice(id, 1);
             render();
-            console.log(myLibrary);
-            // document.querySelector("[data-id='" + id + "']").remove();
         });
     });
 }
 
-function createBookElement(id, title, author, hasRead) {
+function createBookElement(id, title, author, pages, hasRead) {
     const bookList = document.querySelector(".book-list")
     const newDiv = document.createElement("div");
+    const nestedDiv = document.createElement("div");
     const titleText = document.createElement("p");
     const authorText = document.createElement("p");
+    const pageText = document.createElement("p");
     const removeButton = document.createElement("button");
     const hasReadCheckbox = document.createElement("input");
 
@@ -49,13 +52,16 @@ function createBookElement(id, title, author, hasRead) {
     newDiv.setAttribute("data-id", id);
     titleText.textContent = title;
     authorText.textContent = author;
+    pageText.textContent = pages;
     removeButton.textContent = "Remove";
     hasReadCheckbox.checked = hasRead;
     newDiv.classList.add("book")
     newDiv.appendChild(titleText);
     newDiv.appendChild(authorText);
-    newDiv.appendChild(removeButton);
-    newDiv.appendChild(hasReadCheckbox);
+    newDiv.appendChild(pageText);
+    nestedDiv.appendChild(removeButton);
+    nestedDiv.appendChild(hasReadCheckbox);
+    newDiv.appendChild(nestedDiv);
     bookList.appendChild(newDiv);
 }
 
