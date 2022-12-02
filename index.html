@@ -8,14 +8,19 @@
   <title>Library</title>
 
   <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
   <script src="./script.js" defer></script>
 </head>
 
 <body>
   <header>
     <nav>
-      <h1>Library</h1>
-      <button type="button" class="new-book-btn">NEW BOOK</button>
+      <div class="container">
+        <h1>Library</h1>
+        <button type="button" class="new-book-btn">+ Add Book</button>
+      </div>
     </nav>
     <section class="modal hidden">
       <button type="button" class="btn-close">x</button>
@@ -36,7 +41,7 @@
     <div class="overlay hidden"></div>
   </header>
   <main>
-    <div class="book-list"></div>
+    <div class="bookshelf container"></div>
   </main>
   <footer>
     <p>Created by Brian Wang</p>

@@ -19,7 +19,7 @@ function render() {
     });
 
     // rerenders all books on screen
-    for (let i=0; i < myLibrary.length; i++) {
+    for (let i = 0; i < myLibrary.length; i++) {
         createBookElement(i, myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].hasRead);
     }
 
@@ -48,14 +48,13 @@ function checkboxChanged() {
             myLibrary[id].hasRead = event.target.checked;
             console.log(myLibrary);
             // render(); 
-        }); 
+        });
     });
 }
 
 function createBookElement(id, title, author, pages, hasRead) {
-    const bookList = document.querySelector(".book-list")
+    const bookList = document.querySelector(".bookshelf")
     const newDiv = document.createElement("div");
-    const nestedDiv = document.createElement("div");
     const titleText = document.createElement("p");
     const authorText = document.createElement("p");
     const pageText = document.createElement("p");
@@ -67,15 +66,15 @@ function createBookElement(id, title, author, pages, hasRead) {
     titleText.textContent = title;
     authorText.textContent = author;
     pageText.textContent = pages;
-    removeButton.textContent = "Remove";
+    removeButton.textContent = "x";
+    removeButton.classList.add("btn-close");
     hasReadCheckbox.checked = hasRead;
     newDiv.classList.add("book")
+    newDiv.appendChild(removeButton);
     newDiv.appendChild(titleText);
     newDiv.appendChild(authorText);
     newDiv.appendChild(pageText);
-    nestedDiv.appendChild(removeButton);
-    nestedDiv.appendChild(hasReadCheckbox);
-    newDiv.appendChild(nestedDiv);
+    newDiv.appendChild(hasReadCheckbox);
     bookList.appendChild(newDiv);
 }
 
