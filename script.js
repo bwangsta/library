@@ -31,7 +31,7 @@ function removeBook() {
     const removeButtons = document.querySelectorAll(".book button");
     removeButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const parentDiv = button.parentNode.parentNode;
+            const parentDiv = button.parentNode;
             const id = parentDiv.getAttribute("data-id");
             myLibrary.splice(id, 1);
             render();
@@ -43,11 +43,10 @@ function checkboxChanged() {
     const readCheckboxes = document.querySelectorAll(".book input[type='checkbox']");
     readCheckboxes.forEach(checkbox => {
         checkbox.addEventListener("change", (event) => {
-            const parentDiv = checkbox.parentNode.parentNode;
+            const parentDiv = checkbox.parentNode;
             const id = parentDiv.getAttribute("data-id");
             myLibrary[id].hasRead = event.target.checked;
             console.log(myLibrary);
-            // render(); 
         });
     });
 }
