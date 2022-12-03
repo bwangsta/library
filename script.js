@@ -1,6 +1,6 @@
 let myLibrary = [
     new Book("Ranger's Apprentice", "John Flanagan", 282, true),
-    new Book("Percy Jackson", "Rick Riordan", 282, true)
+    new Book("Percy Jackson", "Rick Riordan", 282, false)
 ];
 
 const addBookForm = document.querySelector("#add-book-form");
@@ -21,6 +21,10 @@ function render() {
     // rerenders all books on screen
     for (let i = 0; i < myLibrary.length; i++) {
         createBookElement(i, myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].hasRead);
+        let book = document.querySelector(`[data-id="${i}"]`);
+        if (myLibrary[i].hasRead) {
+            book.classList.add("has-read");
+        }
     }
 
     removeBook();   // allows books to be removed from the library
@@ -46,6 +50,12 @@ function checkboxChanged() {
             const parentDiv = checkbox.parentNode;
             const id = parentDiv.getAttribute("data-id");
             myLibrary[id].hasRead = event.target.checked;
+            if (event.target.checked) {
+                parentDiv.classList.add("has-read");
+            }
+            else {
+                parentDiv.classList.remove("has-read");
+            }
             console.log(myLibrary);
         });
     });
@@ -66,7 +76,6 @@ function createBookElement(id, title, author, pages, hasRead) {
     authorText.textContent = author;
     pageText.textContent = pages;
     removeButton.textContent = "x";
-    removeButton.classList.add("btn-close");
     hasReadCheckbox.checked = hasRead;
     newDiv.classList.add("book")
     newDiv.appendChild(removeButton);
@@ -79,6 +88,7 @@ function createBookElement(id, title, author, pages, hasRead) {
 
 addBookForm.addEventListener("submit", (event) => {
     event.preventDefault();     // prevents the site from reloading when submitting the form
+    const book = document.querySelector(".book");
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
